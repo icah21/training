@@ -20,7 +20,7 @@ class CacaoDetector:
         self.trinitario_upper = np.array([25, 255, 200])
 
         self.min_match_threshold = 10.0
-        self.cap = cv2.VideoCapture(1)
+        self.cap = cv2.VideoCapture(0)
         time.sleep(0.2)
 
     def detect(self):
