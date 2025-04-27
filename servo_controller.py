@@ -2,6 +2,8 @@ import RPi.GPIO as GPIO
 import time
 import threading
 
+GPIO.setmode(GPIO.BCM)
+
 class ServoController:
     def __init__(self, servo_pin=18):
         GPIO.setmode(GPIO.BCM)
