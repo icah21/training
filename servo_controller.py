@@ -3,12 +3,10 @@ import time
 import threading
 
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 
 class ServoController:
     def __init__(self, servo_pin=18):
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setwarnings(False)
-
         self.servo_pin = servo_pin
         GPIO.setup(self.servo_pin, GPIO.OUT)
 
@@ -19,13 +17,12 @@ class ServoController:
 
     def set_angle(self, angle):
         duty = self.angle_to_duty_cycle(angle)
-        GPIO.output(self.servo_pin, True)
         self.pwm.ChangeDutyCycle(duty)
         time.sleep(0.5)
-        GPIO.output(self.servo_pin, False)
         self.pwm.ChangeDutyCycle(0)
 
     def angle_to_duty_cycle(self, angle):
+        # For most hobby servos, this formula is good
         duty_cycle = (angle + 90) / 18 + 2.5
         return duty_cycle
 
